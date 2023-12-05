@@ -6,7 +6,7 @@ import { type MessageData } from './models/message-data.model'
 /** CSS */
 import './css/button.css'
 
-/** Root */
+/** Root Object */
 import { Commerce } from './commerce'
 
 interface Props {
