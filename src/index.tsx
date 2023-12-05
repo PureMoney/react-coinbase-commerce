@@ -7,7 +7,7 @@ import { type MessageData } from './models/message-data.model'
 import './css/button.css'
 
 /** Root */
-import { Iframe } from './iframe'
+import { Commerce } from './commerce'
 
 interface Props {
   styled: boolean
@@ -101,7 +101,7 @@ export class CoinbaseCommerceButton extends Component<Props & ButtonHTMLAttribut
       className,
       children
     } = this.props
-    const iFrameProps = {
+    const CommerceProps = {
       onLoad,
       onChargeSuccess,
       onChargeFailure,
@@ -129,8 +129,8 @@ export class CoinbaseCommerceButton extends Component<Props & ButtonHTMLAttribut
           </button>
         </a>
         {showModal && (
-          <Iframe
-            {...iFrameProps}
+          <Commerce
+            {...CommerceProps}
             onModalClose={() => { this.onModalClose() }}
             onError={(data: MessageData) => { this.handleError(data) }}
             customMetadata={customMetadata}
