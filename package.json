@@ -30,10 +30,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IOfate/react-coinbase-commerce.git"
+    "url": "git+https://github.com/PureMoney/react-coinbase-commerce.git"
   },
   "bugs": {
-    "url": "https://github.com/IOfate/react-coinbase-commerce/issues"
+    "url": "https://github.com/PureMoney/react-coinbase-commerce/issues"
   },
   "author": "IOfate",
   "license": "MIT",
