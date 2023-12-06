@@ -76,7 +76,6 @@ export class Commerce extends Component<Props, State> {
         )}
         {src !== null && (
           <a
-            onLoad={() => { this.handleDivLoaded() }}
             className="coinbase-commerce"
             ref={src}
             style={{ border: 0 }}
@@ -176,10 +175,5 @@ export class Commerce extends Component<Props, State> {
       default:
         break
     }
-  }
-
-  private handleDivLoaded (): void {
-    this.setState({ loading: false })
-    this.props.onLoad?.()
   }
 }
