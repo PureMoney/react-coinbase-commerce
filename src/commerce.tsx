@@ -75,10 +75,10 @@ export class Commerce extends Component<Props, State> {
           <div className="commerce-loading-spinner"/>
         )}
         {src !== null && (
-          <object
+          <a
             onLoad={() => { this.handleDivLoaded() }}
             className="coinbase-commerce"
-            data={src}
+            ref={src}
             style={{ border: 0 }}
           />
         )}

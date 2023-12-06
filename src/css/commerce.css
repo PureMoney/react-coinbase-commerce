@@ -10,7 +10,7 @@ div.coinbase-commerce-container {
     background-color: rgba(0, 0, 0, 0.5);
   }
   
-  object.coinbase-commerce {
+  a.coinbase-commerce {
     position: fixed;
     left: 0;
     right: 0;
