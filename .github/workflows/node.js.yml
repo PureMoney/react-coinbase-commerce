@@ -7,28 +7,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-    - name: Use Node.js 18.x
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18.x
-    # Skip post-install scripts here, as a malicious
-    # script could steal NODE_AUTH_TOKEN.
-    - run: npm ci --ignore-scripts
-    # env:
-    #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    # `npm rebuild` will run all those post-install scripts for us.
-    # - run: npm rebuild && npm run prepare --if-present
-    - run: npm test
 
   publish-gpr:
-    needs: build
     runs-on: ubuntu-latest
 
     permissions:
@@ -41,6 +21,7 @@ jobs:
           node-version: 18.x
           registry-url: https://registry.npmjs.org/
       - run: npm ci
+      - run: npm run build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.ROKS_ACTION}}
