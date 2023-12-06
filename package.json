@@ -1,5 +1,5 @@
 {
-  "name": "@roks/react-coinbase-commerce",
+  "name": "@sendroks/react-coinbase-commerce",
   "version": "0.0.1",
   "description": "A react component to easily embed a Coinbase Commerce Checkout within your application",
   "main": "dist/cjs/index.js",
@@ -41,7 +41,7 @@
     "node": ">=16"
   },
   "publishConfig": {
-    "@ctapang:registry": "https://registry.npmjs.org"
+    "@sendroks:registry": "https://registry.npmjs.org"
   },
   "peerDependencies": {
     "react": ">=17.0.0",
