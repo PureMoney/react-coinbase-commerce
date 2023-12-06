@@ -10,11 +10,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
-    permissions:
-      contents: read
-      packages: write
-      pull-requests: write
 
     strategy:
       matrix:
@@ -27,16 +22,33 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        token: ${{ secrets.GITHUB_TOKEN }}
-        cache: 'npm'
-        registry-url: 'https://npm.pkg.github.com'
     # Skip post-install scripts here, as a malicious
     # script could steal NODE_AUTH_TOKEN.
     - run: npm ci --ignore-scripts
     # env:
     #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     # `npm rebuild` will run all those post-install scripts for us.
-    - run: npm rebuild && npm run prepare --if-present
+    # - run: npm rebuild && npm run prepare --if-present
     - run: npm test
 
+  publish-gpr:
+    needs: build
+    runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://npm.pkg.github.com/
+      - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
