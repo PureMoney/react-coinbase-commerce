@@ -28,7 +28,7 @@ module.exports = [
       commonjs(),
       typescript({ tsconfig: './tsconfig.json' }),
       terser(),
-      css({ minify: true })
+      css({ minify: true, output: "index.css" })
     ],
     external: ['react', 'react-dom']
   },
