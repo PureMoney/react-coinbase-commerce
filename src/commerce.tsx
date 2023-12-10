@@ -58,8 +58,8 @@ export class Commerce extends Component<Props, State> {
 
     const { hostname, port, protocol } = window.location
     const hostName = `${protocol}//${hostname}${port ? `:${port}` : ''}/`
-
-    this.setState({ src: this.buildSrc(hostName) })
+    const url = this.buildSrc(hostName)
+    window.location.assign(url)
   }
 
   componentWillUnmount (): void {
@@ -67,21 +67,8 @@ export class Commerce extends Component<Props, State> {
   }
 
   render (): JSX.Element {
-    const { loading, src } = this.state
-
     return (
-      <div className="coinbase-commerce-container">
-        {(loading || src === null) && (
-          <div className="commerce-loading-spinner"/>
-        )}
-        {src !== null && (
-          <a
-            className="coinbase-commerce"
-            ref={src}
-            style={{ border: 0 }}
-          />
-        )}
-      </div>
+      <span data-test-component="Commerce" />
     )
   }
 
@@ -131,6 +118,7 @@ export class Commerce extends Component<Props, State> {
       .map((key: string) => `${window.encodeURIComponent(key)}=${window.encodeURIComponent((params as any)[key])}`)
       .join('&')
 
+    // return `${this.origin}/${widgetType}/${encodeURI(id)}?${encodedParams}`
     return `${this.origin}/embed/${widgetType}/${encodeURI(id)}?${encodedParams}`
   }
 

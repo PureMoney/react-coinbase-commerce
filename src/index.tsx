@@ -88,7 +88,6 @@ export class CoinbaseCommerceButton extends Component<Props & ButtonHTMLAttribut
   render (): JSX.Element {
     const { showModal } = this.state
     const {
-      styled,
       onLoad,
       onChargeSuccess,
       onChargeFailure,
@@ -97,9 +96,7 @@ export class CoinbaseCommerceButton extends Component<Props & ButtonHTMLAttribut
       customMetadata,
       onPaymentDetected,
       disableCaching,
-      wrapperStyle,
-      className,
-      children
+      wrapperStyle
     } = this.props
     const CommerceProps = {
       onLoad,
@@ -110,24 +107,9 @@ export class CoinbaseCommerceButton extends Component<Props & ButtonHTMLAttribut
       onPaymentDetected,
       disableCaching
     }
-    const btnProps = this.getButtonProps()
 
     return (
       <div style={wrapperStyle}>
-        <a
-          href="https://commerce.coinbase.com"
-          rel="external"
-          title="Pay with Bitcoin, Bitcoin Cash, DAI, Litecoin, Dogecoin, Ethereum, or USD Coin"
-          onClick={e => { e.preventDefault() }}
-        >
-          <button
-            {...btnProps}
-            className={ styled ? 'coinbase-commerce-button' : className }
-            onClick={() => { this.onClick() }}
-          >
-            { children ?? 'Buy crypto' }
-          </button>
-        </a>
         {showModal && (
           <Commerce
             {...CommerceProps}
