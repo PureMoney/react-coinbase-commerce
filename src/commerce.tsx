@@ -59,6 +59,9 @@ export class Commerce extends Component<Props, State> {
     const { hostname, port, protocol } = window.location
     const hostName = `${protocol}//${hostname}${port ? `:${port}` : ''}/`
     const url = this.buildSrc(hostName)
+
+    console.log("Commerce url: ", url);
+    
     window.location.assign(url)
   }
 

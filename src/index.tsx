@@ -59,32 +59,6 @@ export class CoinbaseCommerceButton extends Component<Props & ButtonHTMLAttribut
     this.onModalClose()
   }
 
-  private getButtonProps (): Partial<Props> {
-    const ignoredProps = [
-      'onLoad',
-      'onChargeSuccess',
-      'onChargeFailure',
-      'customMetadata',
-      'onPaymentDetected',
-      'onModalClosed',
-      'checkoutId',
-      'chargeId',
-      'disableCaching',
-      'wrapperStyle',
-      'styled'
-    ]
-
-    return Object.keys({ ...this.props })
-      .filter((key: string) => !ignoredProps.includes(key))
-      .reduce<Partial<Props>>(
-      (result: Partial<Props>, key: string) => ({
-        ...result,
-        [key]: (this.props as any)[key]
-      }),
-      {}
-    )
-  };
-
   render (): JSX.Element {
     const { showModal } = this.state
     const {
@@ -109,7 +83,7 @@ export class CoinbaseCommerceButton extends Component<Props & ButtonHTMLAttribut
     }
 
     return (
-      <div style={wrapperStyle}>
+      <div style={wrapperStyle} onClick={()=>this.onClick()}>
         {showModal && (
           <Commerce
             {...CommerceProps}
