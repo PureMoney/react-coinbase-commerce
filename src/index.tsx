@@ -83,14 +83,17 @@ export class CoinbaseCommerceButton extends Component<Props & ButtonHTMLAttribut
     }
 
     return (
-      <div style={wrapperStyle} onClick={()=>this.onClick()}>
-        {showModal && (
+      <div style={wrapperStyle}>
+        {showModal ? (
           <Commerce
             {...CommerceProps}
             onModalClose={() => { this.onModalClose() }}
             onError={(data: MessageData) => { this.handleError(data) }}
             customMetadata={customMetadata}
           />
+        )
+        : (
+          <input type="button" onClick={()=>this.onClick()} />
         )}
       </div>
     )
