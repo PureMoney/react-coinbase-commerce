@@ -61,8 +61,9 @@ export class Commerce extends Component<Props, State> {
     const url = this.buildSrc(hostName)
 
     console.log("Commerce url: ", url);
-    
-    window.location.assign(url)
+
+    // open new tab
+    window.open(url, "_blank") || window.location.assign(url);
   }
 
   componentWillUnmount (): void {
@@ -121,8 +122,8 @@ export class Commerce extends Component<Props, State> {
       .map((key: string) => `${window.encodeURIComponent(key)}=${window.encodeURIComponent((params as any)[key])}`)
       .join('&')
 
-    // return `${this.origin}/${widgetType}/${encodeURI(id)}?${encodedParams}`
-    return `${this.origin}/embed/${widgetType}/${encodeURI(id)}?${encodedParams}`
+    return `${this.origin}/${widgetType}/${encodeURI(id)}?${encodedParams}`
+    // return `${this.origin}/embed/${widgetType}/${encodeURI(id)}?${encodedParams}`
   }
 
   /*
