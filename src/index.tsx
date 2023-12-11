@@ -93,7 +93,9 @@ export class CoinbaseCommerceButton extends Component<Props & ButtonHTMLAttribut
           />
         )
         : (
-          <input type="button" onClick={()=>this.onClick()} className="coinbase-commerce-button" />
+          <button onClick={()=>this.onClick()} className="coinbase-commerce-button" >
+            Pay with crypto
+          </button>
         )}
       </div>
     )
